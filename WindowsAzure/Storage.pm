@@ -71,3 +71,11 @@ sub download($$$)
     sign_request($req, $key);
     return (new LWP::UserAgent)->request($req);
 }
+
+sub delete($$$)
+{
+    my ($account, $key, $path) = @_;
+    my $req = new HTTP::Request('DELETE', "http://$account.blob.core.windows.net/$path");
+    sign_request($req, $key);
+    return (new LWP::UserAgent)->request($req);
+}
